@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build MiraclePill for the iOS Simulator
+        run: xcodebuild -project MiraclePill/MiraclePill.xcodeproj -target MiraclePill -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO build
